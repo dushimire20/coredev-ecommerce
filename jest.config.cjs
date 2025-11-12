@@ -1,16 +1,12 @@
-/** @type {import("jest").Config} **/
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  testEnvironment: "node",
-  preset: "ts-jest/presets/default-esm",
+  preset: 'ts-jest/presets/default-esm',
+  testEnvironment: 'node',
+  extensionsToTreatAsEsm: ['.ts'],
   transform: {
-    "^.+\\.ts$": ["ts-jest", { useESM: true }],
+    '^.+\\.ts?$': ['ts-jest', { useESM: true }],
   },
-  extensionsToTreatAsEsm: [".ts"],
-  testMatch: ["<rootDir>/src/tests/**/*.test.ts"],
-  moduleNameMapper: {
-    "^(\\.{1,2}/.*)\\.js$": "$1",
-  },
-  transformIgnorePatterns: [
-    "node_modules/(?!(@prisma|supertest|dotenv|express|bcrypt|jsonwebtoken|joi|express-async-errors|@types|jest|ts-jest|typescript|source-map-support|ts-node|tsx|ts-node-dev|prisma|@prisma|uuid)/)",
-  ],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  roots: ['<rootDir>/tests'],
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
 };
